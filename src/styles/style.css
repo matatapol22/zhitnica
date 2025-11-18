@@ -21,24 +21,52 @@ a{
 
 .header-content{
     margin: 20px 0;
-    display: inline-block;
+    display: flex;  
+    align-items: center;
+    justify-content: space-between; 
 }
 
 .header-logo{
-    width: auto;
-
+  width: auto;
 }
 
-.header-logo-name{
+.header-logo a{
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.header-logo p{
+    padding-top: 5px;
     font-family: 'FoglihtenNo06', sans-serif;
     color: #000;
     font-size: 40px;
+    margin: 0;
+  }
+
+.header-logo img{
+  width: 61px;
+  height: 55px;
+}
+
+.header-categories{
+  padding-left: 40px;
 }
 
 .header-categories a{
     font-family: 'Geologica', sans-serif;
     font-size: 16px;
     color: #777E90;
+    padding-right: 32px;
+}
+
+.header-categories a:hover{
+    color: #464b57;
+}
+
+.header-icons{
+  gap: 1rem;
+  display: flex;
 }
 
 

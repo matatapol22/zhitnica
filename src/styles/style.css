@@ -6,6 +6,22 @@ a{
     text-decoration: none;
 }
 
+h1{
+  font-family: 'FoglihtenNo06', sans-serif;
+  color: #000;
+  font-size: 70px;
+  font-weight: normal;
+  margin-bottom: 0;
+}
+
+h2{
+  font-family: 'FoglihtenNo06', sans-serif;
+  color: #000;
+  font-size: 40px;
+  font-weight: normal;
+  margin-top: 50px;
+}
+
 @font-face {
   font-family: 'FoglihtenNo06';
   src: url('/fonts/FoglihtenNo06_076.otf') format('otf');
@@ -16,7 +32,6 @@ a{
 .app-header {
   width: 100%;
   background-color: white;
-  height: 93px;
 }
 
 .header-content{
@@ -69,4 +84,46 @@ a{
   display: flex;
 }
 
+.home-top{
+  width: 100%;
+  height: 726px;
+  background-color: #E8EEB0;
+  background-image: url('../image/home-top.png');
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: auto;
+}
+
+.home-content{
+  margin-right: auto;
+  padding-top: 70px;
+}
+
+.home-content p{
+  font-family: 'Geologica', sans-serif;
+  font-size: 20px;
+  color: #000;
+  padding-bottom: 39px;
+}
+
+.home-content a{
+  font-family: 'Geologica', sans-serif;
+  font-size: 20px;
+  color: #FCFCFD;
+  padding: 16px 42px;
+  background-color: #969974;
+  border-radius: 50px;
+}
+
+.home-content a:hover{
+  background-color: #5D727D;
+}
+
+.card{
+  width: 352px;
+  height: 459px;
+  border-radius: 25px;
+  border-color: #D9D9D9;
+  border: 2px solid;
+}
 

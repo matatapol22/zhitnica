@@ -4,7 +4,8 @@ import Card from '../components/card.jsx';
 const Home = () => {
   const products = [
     { id: 1, image: '/images_product/product1.png', title: 'Драже из вишни', price: '150 ₽', description: 'Натуральный шоколад, сушёная вишня' },
-    { id: 2, image: '../image/product2.jpg', title: 'Товар 2', price: '200 ₽', description: 'Описание' },
+    { id: 2, image: '/images_product/product2.png', title: 'Конфеты «Алтайская тыква»', price: '200 ₽', description: 'Семена тыквы,  натуральный шоколадСемена тыквы,  натуральный шоколад' },
+    { id: 3, image: '/images_product/product3.png', title: 'Конфеты «Кедровое ассорти»', price: '2000 ₽', description: 'Ядро кедрового ореха, мёд' },
   ];
   return (
     <main className='home'>
@@ -35,6 +36,9 @@ const Home = () => {
                     />
                     ))}
                 </div>
+            </div>
+            <div className='home-categories'>
+                <h2>КАТЕГОРИИ</h2>
             </div>
         </div>
     </main>

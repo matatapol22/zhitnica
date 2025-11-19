@@ -9,8 +9,12 @@ const Card = ({ image, title, description, price  }) => {
         <p className='card-description'>{description}</p>
         <div className='product-card__footer'>
           <button className='product-card__btn'>В корзину</button>
-          <button className='product-card__btn'>+ 1 -</button>
-          <span>{price}</span>
+          <div className='product-card__btn-quantity'>
+              <button class="product-card-btn-um" type="button" aria-label="Уменьшить">-</button>
+              <input class="product-card-input" type="text" value="1" readonly/>
+              <button class="product-card-btn-uv" type="button" aria-label="Увеличить">+</button>
+          </div>
+          <span className='product-card-price'>{price}</span>
         </div>
       </div>
     </div>

@@ -3,8 +3,8 @@ import Card from '../components/card.jsx';
 
 const Home = () => {
   const products = [
-    { id: 1, image: '/image/product1.png', title: 'Драже из вишни', price: '150 ₽', description: 'Натуральный шоколад, сушёная вишня' },
-    { id: 2, image: '/image/product2.jpg', title: 'Товар 2', price: '200 ₽', description: 'Описание' },
+    { id: 1, image: '/images_product/product1.png', title: 'Драже из вишни', price: '150 ₽', description: 'Натуральный шоколад, сушёная вишня' },
+    { id: 2, image: '../image/product2.jpg', title: 'Товар 2', price: '200 ₽', description: 'Описание' },
   ];
   return (
     <main className='home'>

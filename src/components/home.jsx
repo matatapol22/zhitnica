@@ -23,8 +23,9 @@ const Home = () => {
             </div>
         </div>
         <div className='container'>
+            <h2>ПОПУЛЯРНОЕ</h2>
             <div className='home-popular'>
-                <h2>ПОПУЛЯРНОЕ</h2>
+                
                 <div className='products-grid'>
                     {products.map(product => (
                     <Card 
@@ -37,8 +38,25 @@ const Home = () => {
                     ))}
                 </div>
             </div>
+            <h2>КАТЕГОРИИ</h2>
             <div className='home-categories'>
-                <h2>КАТЕГОРИИ</h2>
+                <div className='home-categories-card'>
+                    <a href="#" className='home-categories-card-a'>
+                        <div className='home-categories-card1'>
+                            <span className='home-categories-card1-text'>Фито-мука</span>
+                        </div>
+                    </a>
+                    <a href="#" className='home-categories-card-a'>
+                        <div className='home-categories-card2'>
+                            <span className='home-categories-card1-text'>Травы</span>
+                        </div>
+                    </a>
+                    <a href="#" className='home-categories-card-a'>
+                        <div className='home-categories-card3'>
+                            <span className='home-categories-card1-text'>Масла</span>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
     </main>

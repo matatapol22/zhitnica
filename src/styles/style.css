@@ -227,3 +227,46 @@ h2{
   justify-content: space-between;
 }
 
+.home-categories-card{
+  display: flex;
+  justify-content: space-between;
+}
+
+.home-categories-card-a{
+  
+}
+
+.home-categories-card1{
+  width: 352px;
+  height: 499px;
+  background-image: url('/images_product/phyto flour.png');
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+.home-categories-card1-text{
+  font-family: 'Geologica', sans-serif;
+  font-size: 18px;
+  color: #5D727D;
+  padding: 12px 18px;
+  background-color: #FFFFFF;
+  border-radius: 25px;
+  margin-top: auto;  
+  width: fit-content;
+  margin-bottom: 20px;
+  margin-left: 20px;
+}
+
+.home-categories-card2{
+  width: 352px;
+  height: 404px;
+  background-image: url('/images_product/category-herb.png');
+}
+
+.home-categories-card3{
+  width: 352px;
+  height: 404px;
+  background-image: url('/images_product/category-oil.png');
+}
+

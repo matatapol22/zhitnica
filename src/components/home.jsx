@@ -1,10 +1,6 @@
 import React from 'react';
 import Card from '../components/card.jsx';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/autoplay';
-import { Navigation, Autoplay } from 'swiper/modules';
+import CategoriesSlider from '../components/сategories-slider.jsx'
 
 const Home = () => {
   const products = [
@@ -45,59 +41,7 @@ const Home = () => {
             </div>
             <h2>КАТЕГОРИИ</h2>
             {/* Swiper слайдер */}
-            <div className='home-categories'>
-                 <Swiper
-                    modules={[Navigation, Autoplay]}
-                    spaceBetween={30}  // увеличим расстояние между слайдами
-                    navigation={true}
-                    slidesPerView={3}
-                    autoplay={{
-                        delay: 5000,
-                        disableOnInteraction: false,
-                    }}
-                    loop={true}
-                    // Добавьте эти настройки для фиксированной ширины:
-                    width={352}  // фиксированная ширина каждого слайда
-                    centeredSlides={true}  // центрирование активного слайда
-                    breakpoints={{
-                    320: { 
-                        slidesPerView: 1, 
-                        spaceBetween: 10,
-                        centeredSlides: false,
-                        width: null  // на мобильных убираем фиксированную ширину
-                    },
-                    768: { 
-                        slidesPerView: 2, 
-                        spaceBetween: 20,
-                        centeredSlides: false,
-                        width: null
-                    },
-                    1024: { 
-                        slidesPerView: 3, 
-                        spaceBetween: 30,
-                        centeredSlides: true,
-                        width: 352  // фиксированная ширина на десктопе
-                    },
-                    }}
-                >
-                    <SwiperSlide>
-                        <div className='home-categories-card1'>
-                        <span className='home-categories-card1-text'>Фито-мука</span>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className='home-categories-card2'>
-                        <span className='home-categories-card2-text'>Травы</span>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className='home-categories-card3'>
-                        <span className='home-categories-card2-text'>Масла</span>
-                        </div>
-                    </SwiperSlide>
-                </Swiper>
-            </div>
-
+            <CategoriesSlider />
             {/* Кнопка НИЖЕ слайдера */}
             <div className='home-categories-footer'>
                 <a href="#" className='home-categories-btn'>Чтобы увидеть всю нашу коллекцию, загляните в полный КАТАЛОГ→ </a>

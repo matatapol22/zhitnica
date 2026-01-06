@@ -13,6 +13,9 @@ h1{
   font-weight: normal;
   margin-bottom: 0;
 }
+h3{
+  margin: 0;
+}
 
 h2{
   font-family: 'FoglihtenNo06', sans-serif;
@@ -292,30 +295,29 @@ h2{
 }
 
 .home-categories-footer{
-  display: flex;
-  justify-content: flex-end;
+  width: auto;
 }
 
-.home-categories-btn{
+.home-categories-btn {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 64px; 
+  box-sizing: border-box !important;  
+  padding: 18px 32px;
+  background: #FFFFFF;
+  border: 2px solid #8F926B;
+  border-radius: 15px;
   font-family: 'Geologica', sans-serif;
   font-size: 16px;
   color: #141416;
-  padding: 16px 42px;
-  background-color: #FFFFFF;
-  border-radius: 15px;
-  border: 2px solid #8F926B;
-  margin-left: auto;
+  text-decoration: none;
+  text-align: center;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
-
-
-
-
-
-
-
-
-
 
 
 .home-categories-container {
@@ -325,30 +327,32 @@ h2{
 }
 
 .categories-grid-slider {
-  display: flex;
-  justify-content: center;
   position: relative;
   max-width: 1120px;
 }
 
 .categories-grid {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
   max-width: 1120px;
+  grid-template-areas:   "f i b"
+                         "f o o";
   gap: 32px;
+  grid-template-columns: 1fr 1fr 1fr;
 }
+
+.category-card-large { grid-area: f; }
+.category-card-small { grid-area: i; }
+.category-card-small-second { grid-area: b; }
+.home-categories-footer { grid-area: o; }
+.E { grid-area: n; }
 
 /* Большая карточка */
 .category-card-large {
   width: 352px;
   height: 499px;
 }
-
-/* Правый столбец с маленькими карточками */
-
-
 /* Маленькие карточки */
-.category-card-small {
+.category-card-small, .category-card-small-second  {
   width: 352px;
   height: 404px;
 }
@@ -441,50 +445,169 @@ h2{
   right: -70px;
 }
 
-/* Прогресс бар */
-.slider-progress {
-  width: 200px;
-  height: 3px;
-  background: #e0e0e0;
-  margin: 30px auto 0;
-  border-radius: 2px;
+.home-order-steps{
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+
+.order-step{
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  height: 165px;
+  padding: 38px 26px  38px 26px ;
+  justify-content: space-between;
+}
+
+.order-step-one{
+  border: 2px solid #878B61;
+  border-radius: 25px;
+}
+
+.order-step-two{
+  border: 2px solid #5D727D;
+  border-radius: 25px;
+}
+
+.order-step-three{
+  background-color: #5D727D;
+  border-radius: 25px;
+}
+
+.order-step-name{
+  font-family: 'Geologica', sans-serif;
+  font-size: 36px;
+  font-weight: 400;
+  margin-bottom: 16px;
+
+}
+
+.order-step-name-one{
+  color:#878B61;
+}
+
+.order-step-name-two{
+  color: #5D727D;
+}
+
+.order-step-name-three{
+  color: #fff;
+}
+.order-step-text-one{
+  color: #767A7C;
+}
+.order-step-text-three{
+  color: #fff;
+}
+
+
+.order-step-text{
+  font-family: 'Geologica', sans-serif;
+  font-size: 20px;
+  font-weight: 200;
+}
+
+
+
+.home-map-info{
+  background-color: #969974;
+  width: 100%;
+  height: 350px;
+  box-sizing: border-box;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 44px 44px;
+}
+
+.home-map-info-texts{
+
+}
+
+.home-map-info-text{
+  font-family: 'Geologica', sans-serif;
+  font-size: 25px;
+  font-weight: 200;
+  color: #fff;
+  text-align: center;
+  display: block;
+}
+
+.home-map-info-card{
+  display: flex;
+  justify-content: space-between;
+  gap: 70px;
+  margin-top: 25px;
+  
+}
+
+.home-map-info-card-one{
+  background-color: #fff;
+  width: 270px;
+  height: 140px;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+.home-map-info-card-text-one, .home-map-info-card-text-two{
+  font-family: 'Geologica', sans-serif;
+  font-size: 18px;
+  color: #141416;
+  padding: 20px;
+}
+.home-map-info-card-text-one{
+  color: #878B61;
+}
+
+.home-map-info-card-text-two{
+  color: #5D7178;
+}
+
+.home-map-info-card-text{
+  font-family: 'Geologica', sans-serif;
+  font-size: 16px;
+  color: #767A7C;
+  font-weight: 200;
+  padding: 0 20px 20px 20px;
+}
+
+#yandex-map {
+  width: 1120px !important;
+  height: 500px !important; /* или сколько тебе нужно: 400px, 600px и т.д. */
+  border: none;
+  border-radius: 12px; /* если хочешь скруглённые углы */
   overflow: hidden;
 }
 
-.progress-bar {
-  height: 100%;
-  background: #8F926B;
-  transition: width 0.3s ease;
+.home-map-container {
+  width: 100%;
+  max-width: 100%;
+  margin-top: 30px;
 }
 
-/* Точечные индикаторы */
-.slider-dots {
+
+
+.footer{
+  height: 413px;
+  background-color: #5D727D;
+  margin-top: 50px;
   display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 8px;
-  margin-top: 20px;
+  
 }
 
-.dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #e0e0e0;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
+.footer-content-one h3{
+  font-family: 'FoglihtenNo06', sans-serif;
+  color: #141416;
+  font-size: 40px;
+  font-weight: normal;
+  margin-bottom: 0;
 }
 
-.dot.active {
-  background: #8F926B;
-  transform: scale(1.2);
-}
-
-.dot:hover:not(.disabled) {
-  background: #8F926B;
-}
-
-.dot.disabled {
-  cursor: not-allowed;
-}
 

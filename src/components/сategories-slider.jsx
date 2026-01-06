@@ -125,7 +125,7 @@ function CategoriesSlider() {
           </div>
           
           {/* Нижняя маленькая карточка */}
-          <div className="category-card category-card-small">
+          <div className="category-card category-card-small-second">
             <div 
               className={`category-image ${isAnimating ? 'fade-in' : ''}`}
               style={{
@@ -139,6 +139,15 @@ function CategoriesSlider() {
             >
               {categories[displayIndexes[2]].title}
             </span>
+          </div>
+
+          <div className='home-categories-footer'>
+                <a href="#" className="home-categories-btn">
+                  Чтобы увидеть всю нашу коллекцию, загляните в полный&nbsp;
+                  <span style={{ color: '#8F926B', fontWeight: 600 }}>
+                     КАТАЛОГ →
+                  </span> 
+                </a>
           </div>
           
         </div>

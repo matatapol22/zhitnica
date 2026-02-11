@@ -1,6 +1,7 @@
-.container {
+.custom-container {
   max-width: 1120px;
   margin: 0 auto;
+  width: 100%;
 }
 a{
     text-decoration: none;
@@ -73,13 +74,13 @@ h2{
 
 .header-categories a{
     font-family: 'Geologica', sans-serif;
-    font-size: 16px;
+    font-size: 18px;
     color: #777E90;
     padding-right: 32px;
 }
 
 .header-categories a:hover{
-    color: #464b57;
+    color: #000;
 }
 
 .header-icons{
@@ -598,16 +599,118 @@ h2{
   margin-top: 50px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  
 }
 
-.footer-content-one h3{
+.footer-content-one span{
   font-family: 'FoglihtenNo06', sans-serif;
   color: #141416;
   font-size: 40px;
   font-weight: normal;
   margin-bottom: 0;
+}
+
+.footer-content span, 
+.footer-content a {
+  text-decoration: none;
+  color: #353945; 
+  font-family: 'Geologica', sans-serif;
+  font-size: 18px;
+  padding-bottom: 18px;
+}
+
+.footer-content a:hover {
+  color: #000;
+}
+
+
+.footer-cont{
+  display: flex;
+  flex-direction: row; 
+  justify-content: space-between; 
+  width: 100%;
+}
+
+
+.footer-content-one, .footer-content{
+  display: flex;
+  flex-direction: column;
+}
+
+.header-content {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Затемнение фона */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+/* Центрирование */
+.modal-container {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 1000;
+}
+
+/* Само окно */
+.modal-panel {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.modal-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #141416;
+}
+
+/* Форма */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form-group input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.login-btn {
+    background-color: #5D727D;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.modal-footer {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
 }
 
 

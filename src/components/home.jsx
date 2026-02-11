@@ -44,7 +44,7 @@ const Home = () => {
   return (
     <main className='home'>
         <div className='home-top'>
-            <div className='container'>
+            <div className='custom-container'>
                 <div className='home-content'>
                     <h1>ПОЛЕЗНЫЕ ПРОДУКТЫ <br/> 
                         С ДОСТАВКОЙ <br/> 
@@ -56,7 +56,7 @@ const Home = () => {
                 </div>
             </div>
         </div>
-        <div className='container'>
+        <div className='custom-container'>
             <h2>ПОПУЛЯРНОЕ</h2>
             <div className='home-popular'>
                 
@@ -117,7 +117,7 @@ const Home = () => {
                         <div className='home-map-info-card-one'>
                             <span className='home-map-info-card-text-two'>Часы работы:</span>
                             <span className='home-map-info-card-text'>Красноярск, <br/>
-                                                            Проспект Мира, 60 (2 этаж) <br/>          
+                                                            Проспект Мира, 60 (1 этаж) <br/>          
                             </span>
                         </div>
                     </div>

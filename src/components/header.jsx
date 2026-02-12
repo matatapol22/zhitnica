@@ -11,7 +11,7 @@ const Header = () => {
 
     return (
         <header className="app-header">
-            <div className="container">
+            <div className="custom-container">
                 <div className='header-content'>
                     <div className='header-logo'>
                         <a href='#'><img src={logo} alt="Logo" /><p>Житница</p></a>
@@ -34,7 +34,6 @@ const Header = () => {
                         </a>
                     </div>
 
-                    {/* МОДАЛЬНОЕ ОКНО HEADLESS UI */}
                     <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="modal-root">
                         {/* Фон (Overlay) */}
                         <div className="modal-overlay" aria-hidden="true" />
@@ -42,23 +41,29 @@ const Header = () => {
                         {/* Контейнер для центрирования */}
                         <div className="modal-container">
                             <Dialog.Panel className="modal-panel">
-                                <Dialog.Title className="modal-title">Авторизация</Dialog.Title>
-                                
-                                <form className="auth-form">
-                                    <div className="form-group">
-                                        <label>Email</label>
-                                        <input type="email" placeholder="example@mail.com" />
-                                    </div>
-                                    <div className="form-group">
-                                        <label>Пароль</label>
-                                        <input type="password" />
-                                    </div>
-                                    <button type="submit" className="login-btn">Войти</button>
-                                </form>
+                                {/*<Dialog.Title className="modal-title">Авторизация</Dialog.Title>*/}
+                                <div className='auth-hello'>
+                                    <span className='auth-hello-title'>Рады видеть вас снова!</span>
+                                    <span className='auth-hello-text'>Богатство природы для вашего здоровья</span>
+                                </div>
+                                <div className='auth-container'>
+                                    {/*<button onClick={() => setIsOpen(false)} className="close-link">Закрыть</button>*/}
+                                    <form className="auth-form">
+                                        <div className="form-group">
+                                            <label>Почта</label>
+                                            <input type="email" placeholder="example@mail.com" />
+                                        </div>
+                                        <div className="form-group">
+                                            <label>Пароль</label>
+                                            <input type="password" placeholder="Введите свой пароль"/>
+                                            <a href="#">Забыли пароль?</a>
+                                        </div>
+                                        <button type="submit" className="login-btn">Войти</button>
+                                    </form>
 
-                                <div className="modal-footer">
-                                    <span>Нет аккаунта? <a href="#">Зарегистрироваться</a></span>
-                                    <button onClick={() => setIsOpen(false)} className="close-link">Закрыть</button>
+                                    <div className="modal-footer">
+                                        <span>Нет аккаунта? <a href="#">Зарегистрируйтесь</a></span>   
+                                    </div>
                                 </div>
                             </Dialog.Panel>
                         </div>

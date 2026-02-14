@@ -1,13 +1,15 @@
 import { useState } from 'react';
-import { Dialog } from '@headlessui/react'; // Импортируем только Dialog
+import { Dialog } from '@headlessui/react'; 
 import '../styles/style.css';
 import logo from '../image/logo.svg';
 import search from '../image/search.svg';
 import cart from '../image/cart.svg';
 import userIcon from '../image/user.svg';
+import AuthModal from '../components/authModal.jsx';
+import RegisterModal from '../components/registerModal.jsx'
 
 const Header = () => {
-    const [isOpen, setIsOpen] = useState(false);
+    const [modalType, setModalType] = useState(null);
 
     return (
         <header className="app-header">
@@ -29,42 +31,18 @@ const Header = () => {
                     <div className='header-icons'>
                         <a href="#"><img src={search} alt="Search" /></a>
                         <a href="#"><img src={cart} alt="Cart" /></a>
-                        <a href="#!" onClick={(e) => { e.preventDefault(); setIsOpen(true); }}>
+                        <a href="#!" onClick={(e) => {setModalType('authModal'); }}>
                             <img src={userIcon} alt="User" />
                         </a>
                     </div>
 
-                    <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="modal-root">
-                        {/* Фон (Overlay) */}
-                        <div className="modal-overlay" aria-hidden="true" />
-
-                        {/* Контейнер для центрирования */}
+                    <Dialog open={modalType !== null} onClose={() => setModalType(null)}>
                         <div className="modal-container">
                             <Dialog.Panel className="modal-panel">
-                                {/*<Dialog.Title className="modal-title">Авторизация</Dialog.Title>*/}
-                                <div className='auth-hello'>
-                                    <span className='auth-hello-title'>Рады видеть вас снова!</span>
-                                    <span className='auth-hello-text'>Богатство природы для вашего здоровья</span>
-                                </div>
-                                <div className='auth-container'>
-                                    {/*<button onClick={() => setIsOpen(false)} className="close-link">Закрыть</button>*/}
-                                    <form className="auth-form">
-                                        <div className="form-group">
-                                            <label>Почта</label>
-                                            <input type="email" placeholder="example@mail.com" />
-                                        </div>
-                                        <div className="form-group">
-                                            <label>Пароль</label>
-                                            <input type="password" placeholder="Введите свой пароль"/>
-                                            <a href="#">Забыли пароль?</a>
-                                        </div>
-                                        <button type="submit" className="login-btn">Войти</button>
-                                    </form>
+                                {modalType === 'authModal' && <AuthModal setModalType={setModalType}/>}
+                                {modalType === 'registerModal' && <RegisterModal setModalType={setModalType}/>}
 
-                                    <div className="modal-footer">
-                                        <span>Нет аккаунта? <a href="#">Зарегистрируйтесь</a></span>   
-                                    </div>
-                                </div>
+                                
                             </Dialog.Panel>
                         </div>
                     </Dialog>

@@ -666,8 +666,6 @@ h2{
 .modal-panel {
     background: white;
     border-radius: 20px;
-    width: 100%;
-    max-width: 700px;
     height: 450px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
   display: flex;
@@ -677,8 +675,11 @@ h2{
   position: relative;
   z-index: 1001;
 }
+.auth-container{
+  display: flex;
+}
 
-.auth-hello, .auth-container {
+.auth-hello, .auth-form {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -730,6 +731,15 @@ h2{
 
 .auth-form input::placeholder{
   border-radius: 25px;
+}
+
+.auth-form-label{
+  font-family: 'Geologica', sans-serif;
+  color: #878B61;
+  font-size: 14px;
+  font-weight: normal;
+  display: inline-block;
+  text-align: center;
 }
 
 
@@ -793,6 +803,13 @@ h2{
 .modal-footer a:hover{
   color: #000;
   transition: all 0.3s ease;
+}
+
+.pass-info{
+  font-family: 'Geologica', sans-serif;
+  color: #777E90;
+  font-size: 12px;
+  font-weight: normal;
 }
 
 

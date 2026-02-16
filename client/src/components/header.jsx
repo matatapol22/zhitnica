@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Dialog } from '@headlessui/react'; 
+import { useState, Fragment } from 'react';
+import { Dialog, Transition } from '@headlessui/react'; 
 import '../styles/style.css';
 import logo from '../image/logo.svg';
 import search from '../image/search.svg';
@@ -36,9 +36,19 @@ const Header = () => {
                         </a>
                     </div>
 
-                    <Dialog open={modalType !== null} onClose={() => setModalType(null)}>
+                    <Dialog open={modalType !== null} 
+                            onClose={() => {}}
+                    >
+                        <div className="modal-overlay" aria-hidden="true" />
+                        
                         <div className="modal-container">
                             <Dialog.Panel className="modal-panel">
+                                <button 
+                                    className="close-modal-btn" 
+                                    onClick={() => setModalType(null)}
+                                >
+                                    ×
+                                </button>
                                 {modalType === 'authModal' && <AuthModal setModalType={setModalType}/>}
                                 {modalType === 'registerModal' && <RegisterModal setModalType={setModalType}/>}
 

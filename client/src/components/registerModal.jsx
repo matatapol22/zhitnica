@@ -13,7 +13,7 @@ const RegisterModal = ({ setModalType }) => {
     return (
         <div className='auth-container'>
             <div className='auth-hello'>
-                <span className='auth-hello-title'>Добро пожаловать в ЖИТНИЦУ!</span>
+                <span className='auth-hello-title'>Добро пожаловать <br/>в ЖИТНИЦУ!</span>
                 <span className='auth-hello-text'>Богатство природы для вашего здоровья</span>
             </div>
             
@@ -34,6 +34,11 @@ const RegisterModal = ({ setModalType }) => {
                     <label>Пароль</label>
                     <input type="password" placeholder="Введите свой пароль" required />
                     <span className="pass-info">Должно быть не менее 8 символов</span>
+                </div>
+
+                <div className="form-group">
+                    <label>Повторите пароль</label>
+                    <input type="password" placeholder="Введите свой пароль" required />
                 </div>
                 
                 <div className="policy-group">

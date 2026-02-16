@@ -666,7 +666,7 @@ h2{
 .modal-panel {
     background: white;
     border-radius: 20px;
-    height: 450px;
+    height: auto;
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
   display: flex;
   overflow: hidden;
@@ -675,8 +675,11 @@ h2{
   position: relative;
   z-index: 1001;
 }
+
 .auth-container{
   display: flex;
+  max-width: 651px;
+  height: 100%;
 }
 
 .auth-hello, .auth-form {
@@ -707,17 +710,23 @@ h2{
   margin-top: 10px;
 }
 
-/* Форма */
 .auth-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  height: auto;
+  padding: 40px;
+
+}
+
+.policy-group a, label{
+  font-size: 12px;
 }
 
 .auth-form label {
   font-family: 'Geologica', sans-serif;
   color: #141416;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: normal;
 }
 
@@ -728,6 +737,8 @@ h2{
   font-weight: normal;
   border: 1px solid #878B61;
 }
+
+
 
 .auth-form input::placeholder{
   border-radius: 25px;
@@ -810,6 +821,24 @@ h2{
   color: #777E90;
   font-size: 12px;
   font-weight: normal;
+}
+
+.close-modal-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 30px;
+    line-height: 1;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.2s;
+    z-index: 10;
+}
+
+.close-modal-btn:hover {
+    color: #333;
 }
 
 

@@ -1,5 +1,6 @@
-import { useState, Fragment } from 'react';
+import { useState, Fragment} from 'react';
 import { Dialog, Transition } from '@headlessui/react'; 
+import { Link } from 'react-router-dom';
 import '../styles/style.css';
 import logo from '../image/logo.svg';
 import search from '../image/search.svg';
@@ -16,16 +17,16 @@ const Header = () => {
             <div className="custom-container">
                 <div className='header-content'>
                     <div className='header-logo'>
-                        <a href='#'><img src={logo} alt="Logo" /><p>Житница</p></a>
+                        <Link to="/"><img src={logo} alt="Logo" /><p>Житница</p></Link>
                     </div>
                     
                     <div className='header-categories'>
-                        <a href="#">Главная</a>
-                        <a href="#">Каталог</a>
-                        <a href="#">О нас</a>
-                        <a href="#">Заказы</a>
-                        <a href="#">Доставка</a>
-                        <a href="#">Оплата</a>
+                        <Link to="/" className="btn">Главная</Link>
+                        <Link to="/catalog" className="btn">Каталог</Link>
+                        <a className="btn" href="#">О нас</a>
+                        <a className="btn" href="#">Заказы</a>
+                        <a className="btn" href="#">Доставка</a>
+                        <a className="btn" href="#">Оплата</a>
                     </div>
 
                     <div className='header-icons'>

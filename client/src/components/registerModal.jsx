@@ -57,6 +57,7 @@ const RegisterModal = ({ setModalType }) => {
                     type="submit" 
                     className={`login-btn ${!agreed ? 'disabled' : ''}`} 
                     disabled={!agreed}
+                    
                 >
                     Зарегистрироваться
                 </button>

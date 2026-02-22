@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import '../styles/style.css';
+import { Link } from 'react-router-dom';
 
 function CategoriesSlider() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -140,15 +141,15 @@ function CategoriesSlider() {
               {categories[displayIndexes[2]].title}
             </span>
           </div>
+          <Link to="/catalog" className='home-categories-footer'>
+            <a href="#" className="home-categories-btn">
+              Чтобы увидеть всю нашу коллекцию, загляните в полный&nbsp;
+              <span style={{ color: '#8F926B', fontWeight: 600 }}>
+                КАТАЛОГ →
+              </span> 
+            </a>
 
-          <div className='home-categories-footer'>
-                <a href="#" className="home-categories-btn">
-                  Чтобы увидеть всю нашу коллекцию, загляните в полный&nbsp;
-                  <span style={{ color: '#8F926B', fontWeight: 600 }}>
-                     КАТАЛОГ →
-                  </span> 
-                </a>
-          </div>
+          </Link>
           
         </div>
 

@@ -9,9 +9,9 @@ import orderMsg from '../image/home-order-msg.svg';
 
 const Home = () => {
   const products = [
-    { id: 1, image: '/images_product/product1.png', title: 'Драже из вишни', price: '150 ₽', description: 'Натуральный шоколад, сушёная вишня' },
-    { id: 2, image: '/images_product/product2.png', title: 'Конфеты «Алтайская тыква»', price: '200 ₽', description: 'Семена тыквы,  натуральный шоколадСемена тыквы,  натуральный шоколад' },
-    { id: 3, image: '/images_product/product3.png', title: 'Конфеты «Кедровое ассорти»', price: '2000 ₽', description: 'Ядро кедрового ореха, мёд' },
+    { id: 1, image: '/images_product/product1.png', title: 'Драже из вишни', price: '150', description: 'Натуральный шоколад, сушёная вишня' },
+    { id: 2, image: '/images_product/product2.png', title: 'Конфеты «Алтайская тыква»', price: '200', description: 'Семена тыквы,  натуральный шоколад' },
+    { id: 3, image: '/images_product/product3.png', title: 'Конфеты «Кедровое ассорти»', price: '2000', description: 'Ядро кедрового ореха, мёд' },
   ];
   useEffect(() => {
     // Ждем загрузки DOM
@@ -60,7 +60,7 @@ const Home = () => {
             <h2>ПОПУЛЯРНОЕ</h2>
             <div className='home-popular'>
                 
-                <div className='products-grid'>
+                <div className='products-grid grid grid-cols-3 gap-4'>
                     {products.map(product => (
                     <Card 
                         key={product.id}

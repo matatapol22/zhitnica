@@ -5,6 +5,7 @@ import Header from './components/header.jsx'
 import Home from './components/home.jsx'
 import Footer from './components/footer.jsx'
 import CatalogComp from './components/catalog-comp.jsx'
+import Product from './components/product.jsx'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/catalog" element={<CatalogComp />} />
+          <Route path="/product" element={<Product />} />
         </Routes>
       </main>
 

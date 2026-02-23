@@ -18,20 +18,17 @@ const Home = () => {
     const timer = setTimeout(() => {
         const mapContainer = document.getElementById('yandex-map');
         if (mapContainer && !mapContainer.innerHTML) {
-        // Удаляем предыдущую карту, если она есть
         mapContainer.innerHTML = '';
         
-        // Создаем скрипт для карты
         const script = document.createElement('script');
         script.type = 'text/javascript';
         script.charset = 'utf-8';
         script.async = true;
         script.src = `https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Aed42dad986acc7855d51417761d41c6006ee59c0157e5ea778981717f4e5ef3c&width=100%&height=500&lang=ru_RU&scroll=true`;
         
-        // Вставляем скрипт прямо в контейнер карты
         mapContainer.appendChild(script);
         }
-    }, 100); // Небольшая задержка для гарантии отрисовки DOM
+    }, 100); 
 
     return () => {
         clearTimeout(timer);
@@ -124,7 +121,6 @@ const Home = () => {
                 </div>
                 <div className='home-map-container'>
                     <div id="yandex-map" style={{ width: '1120px', height: '500px' }}></div>
-                    {/* высоту подбери под дизайн, например 400–600px */}
                 </div>
 
             </div>

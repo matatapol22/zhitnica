@@ -1056,5 +1056,35 @@ h2{
   }
 }
 
+.product-addinfo{
+  margin-top: 5%;
+  width: 50%;
+
+  & button{
+    font-size: 22px;
+    color: #000;
+    font-family: 'Geologica', sans-serif;
+    font-weight: 400;
+    margin-right: 4%;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  & button.active{
+    color: #878B61;
+    transition: 0.3s;
+  }
+}
+
+.product-addinfo-text{
+  & p{
+    font-size: 16px;
+    color: #626264;
+    font-family: 'Geologica', sans-serif;
+    font-weight: 400;
+    margin-top: 2%;
+  }
+}
+
 
 

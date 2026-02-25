@@ -81,7 +81,7 @@ const CatalogComp = () => {
                         </button>
                     </div>
                     </div>
-
+                    
                 </div>
                 
             </div>

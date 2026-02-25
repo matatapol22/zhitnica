@@ -53,6 +53,7 @@ const Home = () => {
                 </div>
             </div>
         </div>
+        
         <div className='custom-container'>
             <h2>ПОПУЛЯРНОЕ</h2>
             <div className='home-popular'>

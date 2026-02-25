@@ -1,6 +1,16 @@
 import React, { useEffect, useState } from "react";
+import Card from '../components/card.jsx';
 
 const Product = () => {
+    const [activeTab, setActiveTab] = useState('description');
+    const products = [
+            { id: 1, image: '/images_product/product1.png', title: 'Драже из вишни', price: '150', description: 'Натуральный шоколад, сушёная вишня' },
+            { id: 2, image: '/images_product/product2.png', title: 'Конфеты «Алтайская тыква»', price: '200', description: 'Семена тыквы,  натуральный шоколад' },
+            { id: 3, image: '/images_product/product3.png', title: 'Конфеты «Кедровое ассорти»', price: '2000', description: 'Ядро кедрового ореха, мёдааааааааааааааааааааааааааааааа' },
+            { id: 3, image: '/images_product/product3.png', title: 'Конфеты «Кедровое ассорти»', price: '2000', description: 'Ядро кедрового ореха, мёд' },
+            
+        ];
+    
     return (
         <div className="custom-container">
             <div className="product-main">
@@ -29,9 +39,32 @@ const Product = () => {
             </div>
             <div className="product-addinfo">
 
+                <button className={activeTab === 'description' ? 'active' : ''} onClick={() => {setActiveTab('description')}}>
+                    Описание
+                </button>
+                <button className={activeTab === 'structure' ? 'active' : ''} onClick={() => {setActiveTab('structure')}}>
+                    Состав
+                </button>
+                <div className="product-addinfo-text">
+                    {activeTab === 'description' && <p>Ядро кедрового ореха, натуральный шоколад </p>}
+                    {activeTab === 'structure' && <p>ffff</p>}
+                </div>
+
             </div>
             <div className="product-recomm">
-
+                <h2>Вам может понравится</h2>
+                <div className="grid grid-cols-4 gap-4 mt-[5%]">
+                    {products.map(product => (
+                        <Card 
+                            key={product.id}
+                            image={product.image}
+                            title={product.title}
+                            price={product.price}
+                            description={product.description}
+                            isCatalog={true}
+                        />
+                    ))}
+                </div>
             </div>
         </div>
     )

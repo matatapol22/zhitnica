@@ -3,6 +3,11 @@ import Card from '../components/card.jsx';
 
 const Product = () => {
     const [activeTab, setActiveTab] = useState('description');
+    const [valueProductToCard, setValueProductToCard] = useState(1);
+
+    const handleValueProductToCard = (type) => {
+        type === 'plus' ? setValueProductToCard(prev => prev + 1) : setValueProductToCard(prev => prev - 1) ;
+    }
     const products = [
             { id: 1, image: '/images_product/product1.png', title: 'Драже из вишни', price: '150', description: 'Натуральный шоколад, сушёная вишня' },
             { id: 2, image: '/images_product/product2.png', title: 'Конфеты «Алтайская тыква»', price: '200', description: 'Семена тыквы,  натуральный шоколад' },
@@ -25,9 +30,9 @@ const Product = () => {
                     <span className="mt-[5%]" >150 ₽</span>
                     <div class="product-footer">
                     <div class="quantity-controls">
-                        <button class="qty-minus">−</button>
-                        <input type="text" value="1" class="qty-input" readonly></input>
-                        <button class="qty-plus">+</button>
+                        <button class="qty-minus" onClick={() => handleValueProductToCard('minus')}>−</button>
+                        <input type="text" value={valueProductToCard} class="qty-input" readOnly></input>
+                        <button class="qty-plus" onClick={() => handleValueProductToCard('plus')}>+</button>
                     </div>
                     <button class="prosuct-favorite-btn" aria-label="Добавить в избранное">
                         

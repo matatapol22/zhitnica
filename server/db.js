@@ -1,12 +1,22 @@
-const { Pool } = require('pg');
-require('dotenv').config(); // Эта строка подключает секретный файл
+ require('dotenv').config();
+ const { Pool } = require('pg');
+
+// const pool = new Pool({
+//   user: process.env.DB_USER,
+//   password: process.env.DB_PASSWORD,
+//   host: 'localhost',
+//   port: process.env.DB_PORT, 
+//   database: process.env.DB_NAME
+// });
 
 const pool = new Pool({
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT,
+  user: 'user_admin',
+  password: 'secret_password',
+  host: 'localhost',
+  port: 5432, 
+  database: 'zhitnica_db'
 });
 
-module.exports = pool;
+module.exports = {
+  query: (text, params) => pool.query(text, params)
+};

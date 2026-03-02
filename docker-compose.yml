@@ -1,0 +1,29 @@
+
+services:
+  # Контейнер с базой данных
+  db:
+    image: postgres:15
+    container_name: zhitnica_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: user_admin
+      POSTGRES_PASSWORD: secret_password
+      POSTGRES_DB: zhitnica_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  # Контейнер с админкой (чтобы видеть таблицы в браузере)
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: zhitnica_pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@zhitnica.ru
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "8080:80"
+
+volumes:
+  db_data:

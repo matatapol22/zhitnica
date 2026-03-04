@@ -1,7 +1,18 @@
-import React, { useState } from 'react';
+import React, { isValidElement, useState } from 'react';
 
 const RegisterModal = ({ setModalType }) => {
     const [agreed, setAgreed] = useState(false);
+    const [error, setError] = useState('');
+    const [formData, setFormData] = useState({
+        full_name: '',
+        email: '',
+        password: '',
+        confirmPassword: ''
+    });
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value}); //e.target - сам инпут, e.target.name - из какого инпута берем,  e.target.value - значение
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault(); 
@@ -9,6 +20,9 @@ const RegisterModal = ({ setModalType }) => {
             console.log("Форма отправлена!");
         }
     };
+
+
+    
 
     return (
         <div className='auth-container'>
@@ -22,23 +36,43 @@ const RegisterModal = ({ setModalType }) => {
                 
                 <div className="form-group">
                     <label>Имя Фамилия</label>
-                    <input type="text" placeholder="Иван Иванов" required />
+                    <input  type="text" 
+                            placeholder="Иван Иванов" 
+                            required
+                            value ={formData.full_name}
+                            onChange={handleChange}
+                            />
                 </div>
                 
                 <div className="form-group">
                     <label>Почта</label>
-                    <input type="email" placeholder="example@mail.com" required />
+                    <input  type="email" 
+                            placeholder="example@mail.com" 
+                            required 
+                            value ={formData.email}
+                            onChange={handleChange}
+                            />
                 </div>
                 
                 <div className="form-group">
                     <label>Пароль</label>
-                    <input type="password" placeholder="Введите свой пароль" required />
+                    <input  type="password" 
+                            placeholder="Введите свой пароль" 
+                            required 
+                            value ={formData.password}
+                            onChange={handleChange}
+                            />
                     <span className="pass-info">Должно быть не менее 8 символов</span>
                 </div>
 
                 <div className="form-group">
                     <label>Повторите пароль</label>
-                    <input type="password" placeholder="Введите свой пароль" required />
+                    <input  type="password" 
+                            placeholder="Введите свой пароль" 
+                            required 
+                            value ={formData.confirmPassword}
+                            onChange={handleChange}
+                            />
                 </div>
                 
                 <div className="policy-group">
@@ -71,6 +105,12 @@ const RegisterModal = ({ setModalType }) => {
                 </div>
             </form>
         </div>
+
+
+
+
+
+        
     );
 }
 

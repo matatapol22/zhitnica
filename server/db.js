@@ -10,11 +10,11 @@
 // });
 
 const pool = new Pool({
-  user: 'user_admin',
-  password: 'secret_password',
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
   host: 'localhost',
-  port: 5432, 
-  database: 'zhitnica_db'
+  port: process.env.DB_PORT, 
+  database: process.env.DB_NAME
 });
 
 module.exports = {

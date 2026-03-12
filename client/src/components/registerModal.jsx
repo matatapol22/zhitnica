@@ -2,7 +2,9 @@ import React, { isValidElement, useState } from 'react';
 
 const RegisterModal = ({ setModalType }) => {
     const [agreed, setAgreed] = useState(false);
+
     const [error, setError] = useState('');
+
     const [formData, setFormData] = useState({
         full_name: '',
         email: '',
@@ -14,10 +16,42 @@ const RegisterModal = ({ setModalType }) => {
         setFormData({ ...formData, [e.target.name]: e.target.value}); //e.target - сам инпут, e.target.name - из какого инпута берем,  e.target.value - значение
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault(); 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setError(''); 
+
+        if (formData.password !== formData.confirmPassword) {
+            setError("Пароли не совпадают");
+            return;
+        }
+
         if (agreed) {
-            console.log("Форма отправлена!");
+            try {
+                const response = await fetch('http://localhost:5000/api/auth/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        full_name: formData.full_name,
+                        email: formData.email,
+                        password: formData.password
+                    })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.message || 'Ошибка регистрации');
+                }
+
+                // УСПЕХ:
+                console.log("Регистрация успешна:", data);
+                localStorage.setItem('token', data.token); // Сохраняем "паспорт" пользователя
+                alert("Добро пожаловать в Житницу!");
+                // Здесь можно добавить закрытие модалки или редирект
+                
+            } catch (err) {
+                setError(err.message);
+            }
         }
     };
 
@@ -37,6 +71,7 @@ const RegisterModal = ({ setModalType }) => {
                 <div className="form-group">
                     <label>Имя Фамилия</label>
                     <input  type="text" 
+                            name="full_name"
                             placeholder="Иван Иванов" 
                             required
                             value ={formData.full_name}
@@ -47,6 +82,7 @@ const RegisterModal = ({ setModalType }) => {
                 <div className="form-group">
                     <label>Почта</label>
                     <input  type="email" 
+                            name="email"
                             placeholder="example@mail.com" 
                             required 
                             value ={formData.email}
@@ -57,6 +93,7 @@ const RegisterModal = ({ setModalType }) => {
                 <div className="form-group">
                     <label>Пароль</label>
                     <input  type="password" 
+                            name="password"
                             placeholder="Введите свой пароль" 
                             required 
                             value ={formData.password}
@@ -68,6 +105,7 @@ const RegisterModal = ({ setModalType }) => {
                 <div className="form-group">
                     <label>Повторите пароль</label>
                     <input  type="password" 
+                            name="confirmPassword"
                             placeholder="Введите свой пароль" 
                             required 
                             value ={formData.confirmPassword}

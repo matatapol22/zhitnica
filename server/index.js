@@ -1,13 +1,14 @@
-require('dotenv').config(); 
-const db = require('./db');
+const express = require('express');
+const cors = require('cors'); // npm install cors
+const authRoutes = require('./routes/registerRoutes');
+require('dotenv').config();
 
-async function testConnection() {
-  try {
-    const res = await db.query('SELECT * FROM users');
-    console.log('Пользователи в базе:', res.rows);
-  } catch (err) {
-    console.error('Ошибка подключения:', err);
-  }
-}
+const app = express();
 
-testConnection();
+app.use(cors()); // Разрешаем запросы с фронтенда
+app.use(express.json()); // Позволяет серверу читать JSON из req.body
+
+// Все роуты из authRoutes теперь будут начинаться с /api/auth
+app.use('/api/auth', authRoutes);
+
+app.listen(5000, () => console.log('Сервер летит на 5000 порту'));

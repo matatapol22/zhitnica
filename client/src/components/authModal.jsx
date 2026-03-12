@@ -1,15 +1,15 @@
-import React, { useState } from 'react'; // ИСПРАВЛЕНО: Добавлен импорт
+import React, { useState } from 'react'; 
 
-const AuthModal = ({ setModalType }) => {
+const AuthModal = ({ setModalType, user, setUser }) => {
     const [formData, setFormData] = useState({
         email: '',
         password: ''
     });
 
-    const [error, setError] = useState('');
     const [isSuccess, setIsSuccess] = useState(false);
 
-    // Функция для обновления полей (как мы учили раньше)
+    const [error, setError] = useState('');
+
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
@@ -25,36 +25,34 @@ const AuthModal = ({ setModalType }) => {
                 body: JSON.stringify({ 
                     email: formData.email, 
                     password: formData.password 
-                }) // ИСПРАВЛЕНО: обращение к formData
+                }) 
             });
 
             const data = await response.json();
 
             if (response.ok) {
                 localStorage.setItem('token', data.token);
+                localStorage.setItem('user', JSON.stringify(data.user));
+                setUser(data.user);
                 setIsSuccess(true);
+
                 setTimeout(() => {
                     setModalType(null);
                 }, 2000);
+
+                alert("Вход успешно выполнен!");
+                console.log("Вход успешен:", data);
             } else {
                 setError(data.message || 'Ошибка входа');
             }
+
+            
         } catch (err) {
             setError('Не удалось связаться с сервером');
+            console.error("Ошибка при логине:", err);
         }
     };
 
-    if (isSuccess) {
-        return (
-            <div className='auth-container success-mode'>
-                <div className='auth-hello'>
-                    <span className='auth-hello-title'>Вход выполнен!</span>
-                    <span className='auth-hello-text'>Рады видеть вас снова в ЖИТНИЦЕ</span>
-                </div>
-                <div className="success-icon" style={{fontSize: '40px', textAlign: 'center'}}>✔️</div>
-            </div>
-        );
-    }
 
     return (
         <div className='auth-container'>
@@ -63,7 +61,7 @@ const AuthModal = ({ setModalType }) => {
                 <span className='auth-hello-text'>Богатство природы для вашего здоровья</span>
             </div>
             
-            <form className="auth-form" onSubmit={handleSubmit}> {/* ИСПРАВЛЕНО: onSubmit лучше для форм */}
+            <form className="auth-form" onSubmit={handleSubmit}> 
                 <span className="auth-form-label">Авторизация</span>
                 
                 {error && <div style={{color: 'red', fontSize: '12px', marginBottom: '10px'}}>{error}</div>}
@@ -72,7 +70,7 @@ const AuthModal = ({ setModalType }) => {
                     <label>Почта</label>
                     <input 
                         type="email" 
-                        name="email" // Добавлен name для handleChange
+                        name="email" 
                         placeholder="example@mail.com" 
                         required
                         value={formData.email}
@@ -84,7 +82,7 @@ const AuthModal = ({ setModalType }) => {
                     <label>Пароль</label>
                     <input 
                         type="password" 
-                        name="password" // Добавлен name для handleChange
+                        name="password" 
                         placeholder="Введите свой пароль"
                         required
                         value={formData.password}

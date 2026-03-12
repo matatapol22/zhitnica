@@ -9,8 +9,13 @@ import userIcon from '../image/user.svg';
 import AuthModal from '../components/authModal.jsx';
 import RegisterModal from '../components/registerModal.jsx'
 
-const Header = () => {
+const Header = ({ user, setUser }) => {
     const [modalType, setModalType] = useState(null);
+
+    const handleLogout = () => {
+        localStorage.removeItem('token'); 
+        setUser(null); 
+    };
 
     return (
         <header className="app-header">
@@ -25,16 +30,34 @@ const Header = () => {
                         <Link to="/catalog" className="btn">Каталог</Link>
                         <a className="btn" href="#">О нас</a>
                         <a className="btn" href="#">Заказы</a>
-                        <a className="btn" href="#">Доставка</a>
-                        <a className="btn" href="#">Оплата</a>
                     </div>
 
                     <div className='header-icons'>
-                        <a href="#"><img src={search} alt="Search" /></a>
-                        <a href="#"><img src={cart} alt="Cart" /></a>
-                        <a href="#!" onClick={(e) => {setModalType('authModal'); }}>
-                            <img src={userIcon} alt="User" />
+                        <a href="#" className="flex flex-col items-center justify-center pl-[15px]">
+                            <img className="flex" src={search} alt="Search" />
+                            <p className="flex" >Поиск</p>
                         </a>
+                        <a href="#" className="flex flex-col items-center justify-center pl-[15px]">
+                            <img className="flex" src={cart} alt="Cart" />
+                            <p className="flex" >Корзина</p>
+                            
+                        </a>
+                        {user ? (
+                            <Link to="/profile" className="flex flex-col items-center justify-center pl-[15px]">
+                                <img className="flex" src={userIcon} alt="User" />
+                                {/* Добавили проверку user.full_name перед split */}
+                                <p className="flex">
+                                    {user.full_name ? user.full_name.split(' ')[0] : 'Кабинет'}
+                                </p>
+                            </Link>
+                        ) : (
+                            <a href="#!" className="flex flex-col items-center justify-center pl-[15px]" 
+                            onClick={(e) => { e.preventDefault(); setModalType('authModal'); }}>
+                                <img className="flex" src={userIcon} alt="User" />
+                                <p className="flex">Войти</p>
+                            </a>
+                        )}
+                        
                     </div>
 
                     <Dialog open={modalType !== null} 
@@ -50,8 +73,8 @@ const Header = () => {
                                 >
                                     ×
                                 </button>
-                                {modalType === 'authModal' && <AuthModal setModalType={setModalType}/>}
-                                {modalType === 'registerModal' && <RegisterModal setModalType={setModalType}/>}
+                                {modalType === 'authModal' && <AuthModal setModalType={setModalType} setUser={setUser}/>}
+                                {modalType === 'registerModal' && <RegisterModal setModalType={setModalType} setUser={setUser}/>}
 
                                 
                             </Dialog.Panel>

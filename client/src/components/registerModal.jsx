@@ -1,9 +1,11 @@
 import React, { isValidElement, useState } from 'react';
 
-const RegisterModal = ({ setModalType }) => {
+const RegisterModal = ({ setModalType, user, setUser }) => {
     const [agreed, setAgreed] = useState(false);
 
     const [error, setError] = useState('');
+
+    const [isSuccess, setIsSuccess] = useState(false);
 
     const [formData, setFormData] = useState({
         full_name: '',
@@ -25,6 +27,8 @@ const RegisterModal = ({ setModalType }) => {
             return;
         }
 
+        
+
         if (agreed) {
             try {
                 const response = await fetch('http://localhost:5000/api/auth/register', {
@@ -39,19 +43,28 @@ const RegisterModal = ({ setModalType }) => {
 
                 const data = await response.json();
 
-                if (!response.ok) {
-                    throw new Error(data.message || 'Ошибка регистрации');
-                }
 
-                // УСПЕХ:
-                console.log("Регистрация успешна:", data);
-                localStorage.setItem('token', data.token); // Сохраняем "паспорт" пользователя
-                alert("Добро пожаловать в Житницу!");
-                // Здесь можно добавить закрытие модалки или редирект
-                
-            } catch (err) {
-                setError(err.message);
-            }
+                if (response.ok) {
+                    localStorage.setItem('token', data.token); 
+                    localStorage.setItem('user', JSON.stringify(data.user));
+                    setUser(data.user);
+                    setIsSuccess(true);
+
+                    setTimeout(() => {
+                        setModalType(null);
+                    }, 2000);
+
+                    alert("Вы успешно зарегистрировались!");
+                    console.log("Регистрация успешна:", data);
+                } else {
+                    setError(data.message || 'Ошибка регистрации');
+                    return;
+                }
+                    
+                } catch (err) {
+                    setError("Не удалось связаться с сервером");
+                    console.error("Ошибка:", err);
+                }
         }
     };
 
@@ -67,7 +80,20 @@ const RegisterModal = ({ setModalType }) => {
             
             <form className="auth-form" onSubmit={handleSubmit}>
                 <span className="auth-form-label">Регистрация</span>
-                
+                {error && (
+                    <div style={{ 
+                        color: '#ff4d4d', 
+                        backgroundColor: '#ffe6e6', 
+                        padding: '10px', 
+                        borderRadius: '5px', 
+                        marginBottom: '15px',
+                        fontSize: '14px',
+                        textAlign: 'center',
+                        fontFamily: 'Geologica'
+                    }}>
+                        {error}
+                    </div>
+                )}
                 <div className="form-group">
                     <label>Имя Фамилия</label>
                     <input  type="text" 

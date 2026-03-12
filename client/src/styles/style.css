@@ -112,6 +112,17 @@ h2{
 .header-icons{
   gap: 1rem;
   display: flex;
+  
+  & img{
+    width: 22px;
+    height: 22px;
+  }
+
+  & p{
+    font-family: 'Geologica', sans-serif;
+    font-size: 16px;
+    color: #000000;
+  }
 }
 
 .home-top{
@@ -503,10 +514,6 @@ h2{
   justify-content: center;
   align-items: center;
   padding: 44px 44px;
-}
-
-.home-map-info-texts{
-
 }
 
 .home-map-info-text{

@@ -91,7 +91,7 @@ const AuthModal = ({ setModalType, user, setUser }) => {
                     <button type="button" className="pass-info-btn" style={{background: 'none', border: 'none', color: 'gray', cursor: 'pointer', padding: 0}}>Забыли пароль?</button>
                 </div>
 
-                <button type="submit" className="login-btn">Войти</button>
+                <button type="submit" className="loginn-btn">Войти</button>
                 
                 <div className="modal-footer">
                     <span>Нет аккаунта? <button type="button" onClick={() => setModalType('registerModal')} style={{background: 'none', border: 'none', color: '#007bff', cursor: 'pointer', textDecoration: 'underline'}}>Зарегистрируйтесь</button></span>   

@@ -153,7 +153,7 @@ const RegisterModal = ({ setModalType, user, setUser }) => {
 
                 <button 
                     type="submit" 
-                    className={`login-btn ${!agreed ? 'disabled' : ''}`} 
+                    className={`loginn-btn ${!agreed ? 'disabled' : ''}`} 
                     disabled={!agreed}
                     
                 >

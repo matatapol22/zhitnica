@@ -12,13 +12,105 @@ const Profile = ({ user, setUser }) => {
     if (!user) return <p>Загрузка...</p>;
 
     return(
-        <div className="custom-container" style={{padding: '100px 0'}}>
-            <h1>Личный кабинет</h1>
-            <p>Добро пожаловать, {user.full_name}!</p>
-            <p>Email: {user.email}</p>
-            <button onClick={handleLogout} className="login-btn" style={{width: '200px'}}>
-                Выйти из аккаунта
-            </button>
+        <div className="custom-container">
+            <h1 className='profile-h1'>Личный кабинет</h1>
+            <div className='profile-client'>
+                
+                {/* <p>Добро пожаловать, {user.full_name}!</p>
+                <p>Email: {user.email}</p>
+                 */}
+                <div className='profile-client-menu'>
+                    <div className='profile-client-menu-leftSide'>
+                        <button className="login-btn">Профиль</button>
+                        <button className="login-btn">История заказов</button>
+                        <button 
+                            onClick={handleLogout} 
+                            className="logout-btn" 
+                        >
+                            Выйти из аккаунта 
+                        </button>
+                    </div>
+                </div>
+                <div className='profile-client-info'>
+                    <div className='profile-client-info-title'>
+                        <h2>Настройки профиля</h2>
+                        <p>Управляйте своей личной информацией и настройками безопасности</p>
+                    </div>
+                    <form className='profile-client-info-form'>
+                        <span className='profile-client-info-formLabel'>Личная информация</span>
+                        <div className='profile-client-info-form-container'>
+                            <div className='profile-form-group'>
+                                <label>Имя Фамилия</label>
+                                <input 
+                                    type="full_name" 
+                                    name="full_name" 
+                                    placeholder="Иван Иванов" 
+                                    required
+                                    
+                                />
+                            </div>
+                            <div className='profile-form-group'>
+                                <label>Почта</label>
+                                <input  
+                                    type="email" 
+                                    name="email"
+                                    placeholder="example@mail.com" 
+                                    required 
+                                />
+                            </div>
+                            <div className='profile-form-group-phone'>
+                                <div className='profile-form-group'>
+                                    <label>Номер телефона</label>
+                                    <input  
+                                        type="phone" 
+                                        name="phone"
+                                        placeholder="+7 (999) 111 22 33" 
+                                        required 
+                                    />
+                                </div>
+                            </div>
+                            <button 
+                                className="logout-btn" 
+                            >
+                                Сохранить изменения
+                            </button>
+                        </div>
+                    </form>
+                    <form className='profile-client-info-form'>
+                        <span className='profile-client-info-formLabel'>Безопасность</span>
+                        <div className='profile-client-info-form-container'>
+                            <div className='profile-form-group'>
+                                <label>Текущий пароль</label>
+                                <input 
+                                    type="password" 
+                                    required
+                                />
+                            </div>
+                            <div className='profile-form-group'>
+                                <label>Новый пароль</label>
+                                <input  
+                                    type="password" 
+                                    required 
+                                />
+                            </div>
+                            <div className='profile-form-group-phone'>
+                                <div className='profile-form-group'>
+                                    <label>Подтвердите новый пароль</label>
+                                    <input  
+                                        type="password" 
+                                        required 
+                                    />
+                                </div>
+                            </div>
+                            <button 
+                                className="logout-btn" 
+                            >
+                                Изменить пароль
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     )
 }

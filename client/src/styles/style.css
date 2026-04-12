@@ -22,6 +22,7 @@ html, body, #root {
 
 .main-content {
     flex: 1; 
+    background-color: #F6F8F6;
 }
 
 h1{
@@ -162,11 +163,12 @@ h2{
 
 .card{
   width: 100%;
-  height: auto;
+  height: 100%;
   border-radius: 25px;
   border: 2px solid #D9D9D9;
   display: flex;
   flex-direction: column;
+  background-color: #fff;
 }
 
 .card-content{
@@ -174,11 +176,11 @@ h2{
   display: flex;
   flex-direction: column;
   height: 100%;
+  
 }
 
 .card-title{
   font-family: 'Geologica', sans-serif;
-  /* font-size: 18px; */
   color: #878B61;
   margin: 0;
   font-weight: bold;
@@ -188,7 +190,8 @@ h2{
   font-family: 'Geologica', sans-serif;
   font-size: 12px;
   color: #141416;
-  margin-bottom: 10px;
+  margin-bottom: auto;
+  /* margin-top: 5px; */
 }
 
 .product-card__btn{
@@ -201,6 +204,7 @@ h2{
   border-radius: 50px;
   border: none;
   width: 100%;
+
   &:hover{
     background-color: #D9DEA7;
     cursor: pointer;
@@ -213,7 +217,7 @@ h2{
   /* font-size: 16px; */
   font-weight: normal;
   color: #878B61;
-  margin-top: auto;
+  margin-top: 5%;
 
 }
 
@@ -451,6 +455,7 @@ h2{
   height: 165px;
   padding: 38px 26px  38px 26px ;
   justify-content: space-between;
+  background-color: #fff;
 }
 
 .order-step-one{
@@ -583,7 +588,6 @@ h2{
 .footer{
   height: 413px;
   background-color: #5D727D;
-  margin-top: 50px;
   display: flex;
   align-items: center;
   flex-shrink: 0;
@@ -1095,20 +1099,23 @@ h2{
   width: 100%;
   color: #777E90;
   text-align: left;
+  height: 100%;
+  padding: 8px 16px;
+  border-radius: 50px;
 }
 
 .logout-btn{
   font-family: 'Geologica', sans-serif;
   font-size: 18px;
-  color: #141416;
+  color: #EF4444;
   border: none;
   cursor: pointer;
   transition: background-color 0.2s ease;
-  padding: 8px 16px;
-  background-color: #E8EEB0;
-  border-radius: 50px;
   width: 100%;
-
+  display: flex;
+  gap: 3%;
+  margin-top: 10%;
+  
 }
 
 .loginn-btn{
@@ -1128,17 +1135,21 @@ h2{
   display: flex;
   flex-direction: column;
   flex: 1;
+  background-color: #F6F8F6;
+  border-radius: 25px;
 }
 
 .profile-client-menu-leftSide{
-  border: 2px solid #b1b3b9;
-  border-radius: 25px;
   padding: 20px;
   display: flex;
   flex-direction: column;
 
   & button{
-    margin-bottom: 15px;
+    margin-bottom: 5%;
+  }
+  & button.active{
+    color: #000;
+    background-color: #E8EEB0;
   }
 }
 
@@ -1172,6 +1183,7 @@ h2{
   border: 2px solid #b1b3b9;
   border-radius: 25px;
   padding: 20px;
+  background-color: #fff;
 
   & button{
     font-family: 'Geologica', sans-serif;
@@ -1184,6 +1196,7 @@ h2{
     background-color: #E8EEB0;
     border-radius: 50px;
     width: 70%;
+    text-align: center;
   }
 }
 .profile-client-info-form-container{
@@ -1205,6 +1218,8 @@ h2{
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 8px;
+    font-size: 14px;
+    font-family: 'Geologica', sans-serif;
   }
   & label{
     font-family: 'Geologica', sans-serif;

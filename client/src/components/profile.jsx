@@ -1,4 +1,5 @@
 import React, { useState } from 'react'; 
+import logoutIcon from '../image/Icon-logout.svg';
 
 
 const Profile = ({ user, setUser }) => {
@@ -9,11 +10,18 @@ const Profile = ({ user, setUser }) => {
         window.location.href = "/"; 
     };
 
-    if (!user) return <p>Загрузка...</p>;
+    const [activeTab, setActiveTab] = useState('profile');
+
+    const handleEditPassword = async (e) => {
+        e.preventDefault();
+    }
+
+    const handleSubmit = () => {
+        
+    }
 
     return(
         <div className="custom-container">
-            <h1 className='profile-h1'>Личный кабинет</h1>
             <div className='profile-client'>
                 
                 {/* <p>Добро пожаловать, {user.full_name}!</p>
@@ -21,12 +29,13 @@ const Profile = ({ user, setUser }) => {
                  */}
                 <div className='profile-client-menu'>
                     <div className='profile-client-menu-leftSide'>
-                        <button className="login-btn">Профиль</button>
-                        <button className="login-btn">История заказов</button>
+                        <button className={`login-btn  ${activeTab === 'profile' ? 'active' : ''}`}  onClick={() => {setActiveTab('profile')}}>Профиль</button>
+                        <button className={`login-btn  ${activeTab === 'orders' ? 'active' : ''}`}  onClick={() => {setActiveTab('orders')}}>История заказов</button>
                         <button 
                             onClick={handleLogout} 
                             className="logout-btn" 
                         >
+                            <img src={logoutIcon}/>
                             Выйти из аккаунта 
                         </button>
                     </div>
@@ -36,7 +45,7 @@ const Profile = ({ user, setUser }) => {
                         <h2>Настройки профиля</h2>
                         <p>Управляйте своей личной информацией и настройками безопасности</p>
                     </div>
-                    <form className='profile-client-info-form'>
+                    <form className='profile-client-info-form' onSubmit={handleSubmit}>
                         <span className='profile-client-info-formLabel'>Личная информация</span>
                         <div className='profile-client-info-form-container'>
                             <div className='profile-form-group'>
@@ -71,12 +80,13 @@ const Profile = ({ user, setUser }) => {
                             </div>
                             <button 
                                 className="logout-btn" 
+                                type="submit"
                             >
                                 Сохранить изменения
                             </button>
                         </div>
                     </form>
-                    <form className='profile-client-info-form'>
+                    <form className='profile-client-info-form' onSubmit={handleEditPassword}>
                         <span className='profile-client-info-formLabel'>Безопасность</span>
                         <div className='profile-client-info-form-container'>
                             <div className='profile-form-group'>
@@ -104,6 +114,7 @@ const Profile = ({ user, setUser }) => {
                             </div>
                             <button 
                                 className="logout-btn" 
+                                type="submit"
                             >
                                 Изменить пароль
                             </button>

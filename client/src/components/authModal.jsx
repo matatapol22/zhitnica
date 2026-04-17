@@ -15,14 +15,14 @@ const AuthModal = ({ setModalType, user, setUser }) => {
     };
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault(); //без перезагрузки
         setError('');
 
         try {
             const response = await fetch('http://localhost:5000/api/auth/login', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ 
+                headers: { 'Content-Type': 'application/json' }, //говорим серверу что за тип контента мы прислали
+                body: JSON.stringify({ // превращает объект в строку
                     email: formData.email, 
                     password: formData.password 
                 }) 

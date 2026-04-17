@@ -1179,11 +1179,12 @@ h2{
   color: #141416;
 }
 
-.profile-client-info-form{
+.profile-client-info-form, .profile-client-pass-form{
   border: 2px solid #b1b3b9;
   border-radius: 25px;
   padding: 20px;
   background-color: #fff;
+  margin-bottom: 3%;
 
   & button{
     font-family: 'Geologica', sans-serif;

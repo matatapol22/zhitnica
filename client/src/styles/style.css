@@ -1115,8 +1115,9 @@ h2{
   display: flex;
   gap: 3%;
   margin-top: 10%;
-  
 }
+
+
 
 .loginn-btn{
   font-family: 'Geologica', sans-serif;
@@ -1198,6 +1199,7 @@ h2{
     border-radius: 50px;
     width: 70%;
     text-align: center;
+    
   }
 }
 .profile-client-info-form-container{

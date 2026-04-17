@@ -1,18 +1,25 @@
 import React, { useState } from 'react'; 
 import logoutIcon from '../image/Icon-logout.svg';
-
+import { PatternFormat } from 'react-number-format';
 
 const Profile = ({ user, setUser }) => {
     
-
     const [activeTab, setActiveTab] = useState('profile');
+
     const [passFormData, setPassFormData] = useState({
         password: '',
         new_password: '',
         rep_new_password: ''
     });
+
     const [errorPass, setErrorPass] = useState('');
     const [errorProfileEdit, setErrorProfileEdit] = useState('');
+
+    const [profileFormData, setProfileFormData] = useState({
+        full_name: user ? user.full_name : '',
+        email: user ? user.email : '',
+        phone: user ? user.phone : ''
+    });
 
     const handleLogout = () => {
         localStorage.removeItem('token');
@@ -24,6 +31,52 @@ const Profile = ({ user, setUser }) => {
     const handleEditPassword = (e) => {
         setPassFormData({...passFormData, [e.target.name]: e.target.value}); // ... - создает копию объекта, потому что нельзя напрямую изменять состояние, а нужно создавать его копию и изменять уже ее
     }
+
+    const handleProfileChange = async (e) => {
+        setProfileFormData({ ...profileFormData, [e.target.name]: e.target.value });
+
+    };
+
+    const handleSubmitProfile = async (e) => {
+        e.preventDefault();
+        setErrorProfileEdit('');
+
+        if (profileFormData.phone.includes('_')) {
+            setErrorProfileEdit('Пожалуйста, введите номер телефона полностью');
+            return;
+        }
+
+        try {
+            const response = await fetch('http://localhost:5000/api/profile/edit-profile', {
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                },
+                body: JSON.stringify({
+                    full_name: profileFormData.full_name,
+                    phone: profileFormData.phone
+                })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                if (data.noChanges) {
+                    alert("Изменений не было");
+                } else {
+                    setUser({ ...user, ...profileFormData });
+                    localStorage.setItem('user', JSON.stringify({ ...user, ...profileFormData }));
+                    alert("Данные успешно сохранены!");
+                }
+            } else {
+                setErrorProfileEdit(data.message || 'Ошибка при изменении данных');
+            }
+        } catch (err) {
+            console.error("Детальная ошибка запроса:", err);
+            setErrorProfileEdit('Ошибка при отправке данных', err);
+        }
+    };
 
     const handleSubmitPass = async (e) => {
         e.preventDefault();
@@ -97,17 +150,19 @@ const Profile = ({ user, setUser }) => {
                                 <h2>Настройки профиля</h2>
                                 <p>Управляйте своей личной информацией и настройками безопасности</p>
                             </div>
-                            <form className='profile-client-info-form' >
+                            <form className='profile-client-info-form' onSubmit={handleSubmitProfile}>
                                 <span className='profile-client-info-formLabel'>Личная информация</span>
+                                    { errorProfileEdit && <div style={{color: 'red', fontSize: '14px', marginBottom: '10px'}}>{errorProfileEdit}</div>}
                                 <div className='profile-client-info-form-container'>
                                     <div className='profile-form-group'>
                                         <label>Имя Фамилия</label>
                                         <input 
-                                            type="full_name" 
+                                            type="text" 
                                             name="full_name" 
                                             placeholder="Иван Иванов" 
-                                            required
-                                            
+                                            required 
+                                            value={profileFormData.full_name}
+                                            onChange={handleProfileChange}
                                         />
                                     </div>
                                     <div className='profile-form-group'>
@@ -116,22 +171,31 @@ const Profile = ({ user, setUser }) => {
                                             type="email" 
                                             name="email"
                                             placeholder="example@mail.com" 
-                                            required 
+                                            value={profileFormData.email}
+                                            readOnly
                                         />
                                     </div>
                                     <div className='profile-form-group-phone'>
                                         <div className='profile-form-group'>
                                             <label>Номер телефона</label>
-                                            <input  
-                                                type="phone" 
+                                            <PatternFormat
+                                                format="+7 (###) ### ## ##"
+                                                allowEmptyFormatting
+                                                mask="_"
                                                 name="phone"
-                                                placeholder="+7 (999) 111 22 33" 
-                                                required 
+                                                className="your-input-class" 
+                                                value={profileFormData.phone}
+                                                onValueChange={(values) => {
+                                                    setProfileFormData({
+                                                        ...profileFormData,
+                                                        phone: values.formattedValue
+                                                    });
+                                                }}
                                             />
                                         </div>
                                     </div>
                                     <button 
-                                        className="logout-btn" 
+                                        className="profile-btn" 
                                         type="submit"
                                     >
                                         Сохранить изменения
@@ -178,7 +242,7 @@ const Profile = ({ user, setUser }) => {
                                         </div>
                                     </div>
                                     <button 
-                                        className="logout-btn" 
+                                        className="profile-btn" 
                                         type="submit"
                                     >
                                         Изменить пароль

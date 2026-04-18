@@ -6,11 +6,23 @@ const Profile = ({ user, setUser }) => {
     
     const [activeTab, setActiveTab] = useState('profile');
 
+    const [activeButton, setActiveButton] = useState('all');
+
     const [passFormData, setPassFormData] = useState({
         password: '',
         new_password: '',
         rep_new_password: ''
     });
+
+    React.useEffect(() => {
+        if (user) {
+            setProfileFormData({
+                full_name: user.full_name || '',
+                email: user.email || '',
+                phone: user.phone || ''
+            });
+        }
+    }, [user]);
 
     const [errorPass, setErrorPass] = useState('');
     const [errorProfileEdit, setErrorProfileEdit] = useState('');
@@ -62,11 +74,13 @@ const Profile = ({ user, setUser }) => {
             const data = await response.json();
 
             if (response.ok) {
+
                 if (data.noChanges) {
                     alert("Изменений не было");
                 } else {
-                    setUser({ ...user, ...profileFormData });
-                    localStorage.setItem('user', JSON.stringify({ ...user, ...profileFormData }));
+                    const updatedData = { ...user, ...profileFormData };
+                    setUser(updatedData); 
+                    localStorage.setItem('user', JSON.stringify(updatedData));
                     alert("Данные успешно сохранены!");
                 }
             } else {
@@ -127,9 +141,6 @@ const Profile = ({ user, setUser }) => {
     return(
         <div className="custom-container">
             <div className='profile-client'>    
-                {/* <p>Добро пожаловать, {user.full_name}!</p>
-                <p>Email: {user.email}</p>
-                 */}
                 <div className='profile-client-menu'>
                     <div className='profile-client-menu-leftSide'>
                         <button className={`login-btn  ${activeTab === 'profile' ? 'active' : ''}`}  onClick={() => {setActiveTab('profile')}}>Профиль</button>
@@ -252,9 +263,32 @@ const Profile = ({ user, setUser }) => {
                         </div>
                     }
                     {activeTab === 'orders' && 
-                        <div className='profile-client-info-orders'>
-
-                        </div> 
+                        <div className='profile-client-info-historyorders'>
+                            <div className='profile-client-info-title flex justify-between items-end'>
+                                <div>
+                                    <h2>История заказов</h2>
+                                    <p>Просматривайте свои заказы</p>
+                                </div>
+                                <div className="profile-client-info-title-btns flex gap-1">
+                                    <button className={activeButton === 'all' ? 'active' : ''} onClick={() => setActiveButton('all')}>
+                                        Все
+                                    </button>
+                                    <button className={activeButton === 'processing' ? 'active' : ''} onClick={() => setActiveButton('processing')}>
+                                        В обработке
+                                    </button>
+                                    <button className={activeButton === 'archived' ? 'active' : ''} onClick={() => setActiveButton('archived')}>
+                                        Архив
+                                    </button>
+                                </div>
+                            </div> 
+                            <div className="grid grid-cols-5 text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-4 px-1">
+                                <div>№ Заказа</div>
+                                <div>Дата оформления</div>
+                                <div>Статус</div>
+                                <div>Сумма</div>
+                                <div className="text-right">Действия</div>
+                            </div>
+                        </div>
                     }
                     
                 </div>

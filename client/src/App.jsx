@@ -9,16 +9,18 @@ import Product from './components/product.jsx'
 import Profile from './components/profile.jsx'
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [user, setUser] = useState(() => {
 
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
     const token = localStorage.getItem('token');
-    if (token) {
-      setUser({ loggedIn: true }); 
+    if (!token) return null;
+
+    const savedUser = localStorage.getItem('user');
+    try {
+      return savedUser ? JSON.parse(savedUser) : { loggedIn: true };
+    } catch (e) {
+      return { loggedIn: true };
     }
-  }, []);
+  });
 
   return (
     <div className="app-container">

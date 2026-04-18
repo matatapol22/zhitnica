@@ -12,11 +12,6 @@ import RegisterModal from '../components/registerModal.jsx'
 const Header = ({ user, setUser }) => {
     const [modalType, setModalType] = useState(null);
 
-    const handleLogout = () => {
-        localStorage.removeItem('token'); 
-        setUser(null); 
-    };
-
     return (
         <header className="app-header">
             <div className="custom-container">
@@ -45,9 +40,9 @@ const Header = ({ user, setUser }) => {
                         {user ? (
                             <Link to="/profile" className="flex flex-col items-center justify-center pl-[15px]">
                                 <img className="flex" src={userIcon} alt="User" />
-                                {/* Добавили проверку user.full_name перед split */}
+                                
                                 <p className="flex">
-                                    {user.full_name ? user.full_name.split(' ')[0] : 'Кабинет'}
+                                    {user?.full_name ? user?.full_name.split(' ')[0] : 'Кабинет'}
                                 </p>
                             </Link>
                         ) : (

@@ -1233,3 +1233,22 @@ h2{
     text-align: left;
   }
 }
+
+.profile-client-info-title-btns{
+  & button{
+    font-family: 'Geologica', sans-serif;
+    font-size: 16px;
+    color: #475569;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    padding: 8px 16px;
+    background-color: #e5e7eb;
+    border-radius: 50px;
+    width: fit-content;
+  }
+  & button.active{
+    color: #000;
+    background-color: #E8EEB0;
+  }
+}

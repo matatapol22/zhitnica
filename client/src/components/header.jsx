@@ -30,11 +30,11 @@ const Header = ({ user, setUser }) => {
                     <div className='header-icons'>
                         <a href="#" className="flex flex-col items-center justify-center pl-[15px]">
                             <img className="flex" src={search} alt="Search" />
-                            <p className="flex" >Поиск</p>
+                            
                         </a>
                         <a href="#" className="flex flex-col items-center justify-center pl-[15px]">
                             <img className="flex" src={cart} alt="Cart" />
-                            <p className="flex" >Корзина</p>
+                            
                             
                         </a>
                         {user ? (

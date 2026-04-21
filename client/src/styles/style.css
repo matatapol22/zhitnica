@@ -10,8 +10,9 @@ a{
 }
 
 html, body, #root {
-    height: 100%;
-    margin: 0;
+  height: 100%;
+  margin: 0;
+  font-family: 'Geologica', sans-serif;
 }
 
 .app-container {
@@ -1082,15 +1083,7 @@ h2{
     color: #878B61;
 }
 
-.profile-client{
-  display: flex;
-  & p{
-    font-size: 16px;
-    color: #000000;
-    font-family: 'Geologica', sans-serif;
-    font-weight: 400;
-  }
-}
+
 
 .login-btn{
   font-family: 'Geologica', sans-serif;
@@ -1152,25 +1145,6 @@ h2{
     color: #000;
     background-color: #E8EEB0;
   }
-}
-
-.profile-client-info{
-  display: flex;
-  flex-direction: column;
-  flex: 3;
-  padding: 10px;
-  gap: 20px;
-  & h2{
-    font-size: 22px;
-    font-family: 'Geologica', sans-serif;
-  }
-  & p{
-    color: #777E90;
-  }
-}
-
-.profile-client-info-title{
-  padding: 20px;
 }
 
 
@@ -1238,17 +1212,21 @@ h2{
   & button{
     font-family: 'Geologica', sans-serif;
     font-size: 16px;
-    color: #475569;
+    color: #777E90;
     border: none;
     cursor: pointer;
     transition: background-color 0.2s ease;
     padding: 8px 16px;
-    background-color: #e5e7eb;
+    border: solid 2px;
+    border-color: #b1b3b9;
     border-radius: 50px;
     width: fit-content;
   }
   & button.active{
     color: #000;
     background-color: #E8EEB0;
+    border-color: #E8EEB0;
   }
 }
+
+

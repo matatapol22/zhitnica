@@ -1,12 +1,13 @@
 import React, { useState } from 'react'; 
 import logoutIcon from '../image/Icon-logout.svg';
 import { PatternFormat } from 'react-number-format';
+import OrderRow from '../components/orderRowClient.jsx';
+import ClientOrdersHistory from '../components/clientOrdersHistory.jsx';
+import logo from '../image/logo.svg';
 
 const Profile = ({ user, setUser }) => {
     
     const [activeTab, setActiveTab] = useState('profile');
-
-    const [activeButton, setActiveButton] = useState('all');
 
     const [passFormData, setPassFormData] = useState({
         password: '',
@@ -139,34 +140,50 @@ const Profile = ({ user, setUser }) => {
     }
 
     return(
-        <div className="custom-container">
-            <div className='profile-client'>    
-                <div className='profile-client-menu'>
-                    <div className='profile-client-menu-leftSide'>
-                        <button className={`login-btn  ${activeTab === 'profile' ? 'active' : ''}`}  onClick={() => {setActiveTab('profile')}}>Профиль</button>
-                        <button className={`login-btn  ${activeTab === 'orders' ? 'active' : ''}`}  onClick={() => {setActiveTab('orders')}}>История заказов</button>
+        <div className="custom-container py-6 md:py-10">
+            {/* Основной контейнер: на мобилках колонка, на десктопе ряд */}
+            <div className='flex flex-col lg:flex-row gap-8'>    
+                
+                {/* Меню: на мобилках горизонтальный ряд с прокруткой */}
+                <div className='w-full lg:w-64 flex-shrink-0'>
+                    <div className='flex lg:flex-col overflow-x-auto lg:overflow-visible gap-2 pb-2 lg:pb-0 border-b lg:border-b-0 border-gray-100'>
+                        <button 
+                            className={`whitespace-nowrap px-6 py-3 rounded-xl transition-all ${activeTab === 'profile' ? 'bg-[#E8EEB0] font-bold' : 'hover:bg-gray-50'}`}  
+                            onClick={() => setActiveTab('profile')}
+                        >
+                            Профиль
+                        </button>
+                        <button 
+                            className={`whitespace-nowrap px-6 py-3 rounded-xl transition-all ${activeTab === 'orders' ? 'bg-[#E8EEB0] font-bold' : 'hover:bg-gray-50'}`}  
+                            onClick={() => setActiveTab('orders')}
+                        >
+                            История заказов
+                        </button>
                         <button 
                             onClick={handleLogout} 
-                            className="logout-btn" 
+                            className="flex items-center gap-2 px-6 py-3 text-red-500 hover:bg-red-50 rounded-xl transition-all mt-auto" 
                         >
-                            <img src={logoutIcon}/>
-                            Выйти из аккаунта 
+                            <img src={logoutIcon} alt="logout" className="w-5 h-5"/>
+                            <span>Выйти</span>
                         </button>
                     </div>
                 </div>
-                <div className='profile-client-info'>
-                    {activeTab === 'profile' && 
-                        <div className='profile-client-info-editprofile'>
-                            <div className='profile-client-info-title'>
-                                <h2>Настройки профиля</h2>
-                                <p>Управляйте своей личной информацией и настройками безопасности</p>
+
+                {/* Контентная часть */}
+                <div className='flex-1'>
+                    {activeTab === 'profile' && (
+                        <div className='animate-fadeIn space-y-6'>
+                            <div className='mb-6'>
+                                <h2 className='text-2xl md:text-3xl font-bold text-[#141416]'>Настройки профиля</h2>
+                                <p className='text-[#777E90] mt-2'>Управляйте своей личной информацией</p>
                             </div>
-                            <form className='profile-client-info-form' onSubmit={handleSubmitProfile}>
-                                <span className='profile-client-info-formLabel'>Личная информация</span>
-                                    { errorProfileEdit && <div style={{color: 'red', fontSize: '14px', marginBottom: '10px'}}>{errorProfileEdit}</div>}
-                                <div className='profile-client-info-form-container'>
-                                    <div className='profile-form-group'>
-                                        <label>Имя Фамилия</label>
+                            <form className='bg-white border-2 border-[#b1b3b9] rounded-[25px] p-4 md:p-8' onSubmit={handleSubmitProfile}>
+                                <h3 className='text-xl mb-6 text-[#141416] block'>Личная информация</h3>
+                                {errorProfileEdit && <div className="text-red-500 text-sm mb-4">{errorProfileEdit}</div>}
+                                
+                                <div className='grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6'>
+                                    <div className='flex flex-col gap-2'>
+                                        <label className='text-[14px] text-[#878B61] font-medium'>Имя Фамилия</label>
                                         <input 
                                             type="text" 
                                             name="full_name" 
@@ -174,123 +191,89 @@ const Profile = ({ user, setUser }) => {
                                             required 
                                             value={profileFormData.full_name}
                                             onChange={handleProfileChange}
+                                            className='w-full p-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#E8EEB0] outline-none'
                                         />
                                     </div>
-                                    <div className='profile-form-group'>
-                                        <label>Почта</label>
+                                    <div className='flex flex-col gap-2'>
+                                        <label className='text-[14px] text-[#878B61] font-medium'>Почта</label>
                                         <input  
                                             type="email" 
-                                            name="email"
-                                            placeholder="example@mail.com" 
-                                            value={profileFormData.email}
+                                            name="email" 
+                                            value={profileFormData.email} 
                                             readOnly
+                                            className='w-full p-3 border border-gray-100 bg-gray-50 rounded-xl text-gray-500 outline-none'
                                         />
                                     </div>
-                                    <div className='profile-form-group-phone'>
-                                        <div className='profile-form-group'>
-                                            <label>Номер телефона</label>
-                                            <PatternFormat
-                                                format="+7 (###) ### ## ##"
-                                                allowEmptyFormatting
-                                                mask="_"
-                                                name="phone"
-                                                className="your-input-class" 
-                                                value={profileFormData.phone}
-                                                onValueChange={(values) => {
-                                                    setProfileFormData({
-                                                        ...profileFormData,
-                                                        phone: values.formattedValue
-                                                    });
-                                                }}
-                                            />
-                                        </div>
+                                    <div className='flex flex-col gap-2 md:col-span-2'>
+                                        <label className='text-[14px] text-[#878B61] font-medium'>Номер телефона</label>
+                                        <PatternFormat
+                                            format="+7 (###) ### ## ##"
+                                            mask="_"
+                                            name="phone"
+                                            value={profileFormData.phone}
+                                            className='w-full p-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#E8EEB0] outline-none'
+                                            onValueChange={(values) => setProfileFormData({...profileFormData, phone: values.formattedValue})}
+                                        />
                                     </div>
-                                    <button 
-                                        className="profile-btn" 
-                                        type="submit"
-                                    >
-                                        Сохранить изменения
-                                    </button>
+                                    
+                                    <div className="md:col-span-2">
+                                        <button className="w-full md:w-max px-10 py-3 bg-[#E8EEB0] hover:bg-[#d8de9a] text-black rounded-full transition-all" type="submit">
+                                            Сохранить изменения
+                                        </button>
+                                    </div>
                                 </div>
                             </form>
-                            <form className='profile-client-pass-form' onSubmit={handleSubmitPass}>
-                                <span className='profile-client-info-formLabel'>Безопасность</span>
-                                    {errorPass && <div style={{color: 'red', fontSize: '14px', marginBottom: '10px'}}>{errorPass}</div>}
-                                <div className='profile-client-info-form-container'>
-                                    <div className='profile-form-group'>
-                                        <label>Текущий пароль</label>
+
+                            <form className='bg-white border-2 border-[#b1b3b9] rounded-[25px] p-4 md:p-8' onSubmit={handleSubmitPass}>
+                                <h3 className='text-xl mb-6 text-[#141416] block'>Безопасность</h3>
+                                {errorPass && <div className="text-red-500 text-sm mb-4">{errorPass}</div>}
+                                
+                                <div className='grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6'>
+                                    <div className='flex flex-col gap-2 md:col-span-2'>
+                                        <label className='text-[14px] text-[#878B61] font-medium'>Текущий пароль</label>
                                         <input 
                                             type="password" 
                                             name="password" 
-                                            placeholder="Введите свой текущий пароль"
-                                            value={passFormData.password}
-                                            onChange={handleEditPassword}
+                                            placeholder="••••••••" 
                                             required
+                                            value={passFormData.password} 
+                                            onChange={handleEditPassword}
+                                            className='w-full p-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#E8EEB0] outline-none'
                                         />
                                     </div>
-                                    <div className='profile-form-group'>
-                                        <label>Новый пароль</label>
+                                    <div className='flex flex-col gap-2'>
+                                        <label className='text-[14px] text-[#878B61] font-medium'>Новый пароль</label>
+                                        <input  
+                                            type="password" name="new_password" 
+                                            placeholder="Минимум 8 символов" 
+                                            required
+                                            value={passFormData.new_password} 
+                                            onChange={handleEditPassword}
+                                            className='w-full p-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#E8EEB0] outline-none'
+                                        />
+                                    </div>
+                                    <div className='flex flex-col gap-2'>
+                                        <label className='text-[14px] text-[#878B61] font-medium'>Повторите новый пароль</label>
                                         <input  
                                             type="password" 
-                                            name="new_password"
-                                            value={passFormData.new_password}
-                                            placeholder="Введите свой новый пароль"
+                                            name="rep_new_password" 
+                                            placeholder="••••••••" 
+                                            required
+                                            value={passFormData.rep_new_password} 
                                             onChange={handleEditPassword}
-                                            required 
+                                            className='w-full p-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#E8EEB0] outline-none'
                                         />
                                     </div>
-                                    <div className='profile-form-group-phone'>
-                                        <div className='profile-form-group'>
-                                            <label>Подтвердите новый пароль</label>
-                                            <input  
-                                                type="password" 
-                                                name="rep_new_password"
-                                                value={passFormData.rep_new_password}
-                                                placeholder="Повторите свой новый пароль"
-                                                onChange={handleEditPassword}
-                                                required 
-                                            />
-                                        </div>
+                                    <div className="md:col-span-2">
+                                        <button className="w-full md:w-max px-10 py-3 bg-[#E8EEB0] hover:bg-[#d8de9a] text-black rounded-full transition-all" type="submit">
+                                            Изменить пароль
+                                        </button>
                                     </div>
-                                    <button 
-                                        className="profile-btn" 
-                                        type="submit"
-                                    >
-                                        Изменить пароль
-                                    </button>
                                 </div>
                             </form>
                         </div>
-                    }
-                    {activeTab === 'orders' && 
-                        <div className='profile-client-info-historyorders'>
-                            <div className='profile-client-info-title flex justify-between items-end'>
-                                <div>
-                                    <h2>История заказов</h2>
-                                    <p>Просматривайте свои заказы</p>
-                                </div>
-                                <div className="profile-client-info-title-btns flex gap-1">
-                                    <button className={activeButton === 'all' ? 'active' : ''} onClick={() => setActiveButton('all')}>
-                                        Все
-                                    </button>
-                                    <button className={activeButton === 'processing' ? 'active' : ''} onClick={() => setActiveButton('processing')}>
-                                        В обработке
-                                    </button>
-                                    <button className={activeButton === 'archived' ? 'active' : ''} onClick={() => setActiveButton('archived')}>
-                                        Архив
-                                    </button>
-                                </div>
-                            </div> 
-                            <div className="grid grid-cols-5 text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-4 px-1">
-                                <div>№ Заказа</div>
-                                <div>Дата оформления</div>
-                                <div>Статус</div>
-                                <div>Сумма</div>
-                                <div className="text-right">Действия</div>
-                            </div>
-                        </div>
-                    }
-                    
+                    )}
+                    {activeTab === 'orders' && <ClientOrdersHistory />}
                 </div>
             </div>
         </div>

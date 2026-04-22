@@ -21,8 +21,8 @@ const AuthModal = ({ setModalType, user, setUser }) => {
         try {
             const response = await fetch('http://localhost:5000/api/auth/login', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' }, //говорим серверу что за тип контента мы прислали
-                body: JSON.stringify({ // превращает объект в строку
+                headers: { 'Content-Type': 'application/json' }, 
+                body: JSON.stringify({ 
                     email: formData.email, 
                     password: formData.password 
                 }) 
@@ -41,7 +41,7 @@ const AuthModal = ({ setModalType, user, setUser }) => {
                 }, 2000);
 
                 alert("Вход успешно выполнен!");
-                console.log("Вход успешен:", data);
+                console.log("Вход успешен!");
             } else {
                 setError(data.message || 'Ошибка входа');
             }

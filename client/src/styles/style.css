@@ -42,7 +42,6 @@ h2{
   color: #000;
   font-size: 40px;
   font-weight: normal;
-  margin-top: 50px;
 }
 
 @font-face {
@@ -1097,19 +1096,6 @@ h2{
   border-radius: 50px;
 }
 
-.logout-btn{
-  font-family: 'Geologica', sans-serif;
-  font-size: 18px;
-  color: #EF4444;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-  width: 100%;
-  display: flex;
-  gap: 3%;
-  margin-top: 10%;
-}
-
 
 
 .loginn-btn{
@@ -1125,108 +1111,5 @@ h2{
   width: 100%;
 }
 
-.profile-client-menu{
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  background-color: #F6F8F6;
-  border-radius: 25px;
-}
-
-.profile-client-menu-leftSide{
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-
-  & button{
-    margin-bottom: 5%;
-  }
-  & button.active{
-    color: #000;
-    background-color: #E8EEB0;
-  }
-}
-
-
-.profile-client-info-formLabel{
-  font-family: 'Geologica', sans-serif;
-  font-size: 20px;
-  color: #141416;
-}
-
-.profile-client-info-form, .profile-client-pass-form{
-  border: 2px solid #b1b3b9;
-  border-radius: 25px;
-  padding: 20px;
-  background-color: #fff;
-  margin-bottom: 3%;
-
-  & button{
-    font-family: 'Geologica', sans-serif;
-    font-size: 18px;
-    color: #141416;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    padding: 8px 16px;
-    background-color: #E8EEB0;
-    border-radius: 50px;
-    width: 70%;
-    text-align: center;
-    
-  }
-}
-.profile-client-info-form-container{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-
-.profile-form-group-phone{
-  grid-column: span 2;
-}
-
-.profile-form-group{
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-
-  & input{
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 14px;
-    font-family: 'Geologica', sans-serif;
-  }
-  & label{
-    font-family: 'Geologica', sans-serif;
-    color: #878B61;
-    font-size: 14px;
-    font-weight: normal;
-    display: inline-block;
-    text-align: left;
-  }
-}
-
-.profile-client-info-title-btns{
-  & button{
-    font-family: 'Geologica', sans-serif;
-    font-size: 16px;
-    color: #777E90;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    padding: 8px 16px;
-    border: solid 2px;
-    border-color: #b1b3b9;
-    border-radius: 50px;
-    width: fit-content;
-  }
-  & button.active{
-    color: #000;
-    background-color: #E8EEB0;
-    border-color: #E8EEB0;
-  }
-}
 
 

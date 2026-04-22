@@ -5,27 +5,27 @@ const ClientOrdersHistory = ({}) => {
     const [activeButton, setActiveButton] = useState('all');
 
     return (
-        <div className='profile-client-info-historyorders p-0 md:p-4'>
-            <div className='profile-client-info-title flex flex-col md:flex-row justify-between items-start md:items-end gap-4 px-4 md:px-0'>
-                <div>
+        <div className='p-0 md:p-4'>
+            <div className='flex flex-col md:flex-row justify-between items-start md:items-end gap-4 px-4 md:px-0'>
+                <div className='mb-6'>
                     <h2 className='text-xl md:text-2xl font-bold'>История заказов</h2>
-                    <p className='pb-0 md:pb-4 text-sm md:text-[16px] text-[#777E90] font-[500]'>Просматривайте свои заказы</p>
+                    <p className='text-[#777E90]'>Просматривайте свои заказы</p>
                 </div>
-                <div className="profile-client-info-title-btns pb-4 flex gap-1 overflow-x-auto w-full md:w-auto no-scrollbar">
+                <div className="pb-4 flex gap-1 overflow-x-auto w-full md:w-auto no-scrollbar">
                     <button 
-                        className={`whitespace-nowrap px-4 py-2 rounded-xl border-2 ${activeButton === 'all' ? 'border-[#E8EEB0] bg-[#E8EEB0] text-white' : 'border-gray-100'}`} 
+                        className={`whitespace-nowrap px-4 py-2 rounded-xl border-2 ${activeButton === 'all' ? 'border-[#E8EEB0] bg-[#E8EEB0] text-black hover:bg-[#cacf9b] hover:border-[#cacf9b]' : 'border-[#F6F8F6] hover:bg-[#fff] hover:border-[#fff]'}`} 
                         onClick={() => setActiveButton('all')}
                     >
                         Все
                     </button>
                     <button 
-                        className={`whitespace-nowrap px-4 py-2 rounded-xl border-2 ${activeButton === 'processing' ? 'border-[#E8EEB0] bg-[#E8EEB0] text-white' : 'border-gray-100'}`} 
+                        className={`whitespace-nowrap px-4 py-2 rounded-xl border-2 ${activeButton === 'processing' ? 'border-[#E8EEB0] bg-[#E8EEB0] text-black hover:bg-[#cacf9b] hover:border-[#cacf9b]' : 'border-[#F6F8F6] hover:bg-[#fff] hover:border-[#fff]'}`} 
                         onClick={() => setActiveButton('processing')}
                     >
                         В обработке
                     </button>
                     <button 
-                        className={`whitespace-nowrap px-4 py-2 rounded-xl border-2 ${activeButton === 'archived' ? 'border-[#E8EEB0] bg-[#E8EEB0] text-white' : 'border-gray-100'}`} 
+                        className={`whitespace-nowrap px-4 py-2 rounded-xl border-2 ${activeButton === 'archived' ? 'border-[#E8EEB0] bg-[#E8EEB0] text-black hover:bg-[#cacf9b] hover:border-[#cacf9b]' : 'border-[#F6F8F6] hover:bg-[#fff] hover:border-[#fff]'}`} 
                         onClick={() => setActiveButton('archived')}
                     >
                         Архив
@@ -59,14 +59,14 @@ const ClientOrdersHistory = ({}) => {
                     </div>
                 </div>
             </div>
-            <div className="profile-orders-footer grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mt-6 px-4 md:px-0">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mt-6 px-4 md:px-0">
                 <div className="border-solid border-2 border-[#b1b3b9] rounded-[25px] p-[15px] bg-[#fff] flex justify-between items-center md:block">
                     <p className="text-[14px] text-[#777E90]">Всего заказов</p>
-                    <p className="text-[22px] font-bold">24</p>
+                    <p className="text-[22px] ">24</p>
                 </div>
                 <div className="border-solid border-2 border-[#b1b3b9] rounded-[25px] p-[15px] bg-[#fff] flex justify-between items-center md:block">
                     <p className="text-[14px] text-[#777E90]">Общая сумма</p>
-                    <p className="text-[22px] font-bold">54 200 ₽</p>
+                    <p className="text-[22px] ">54 200 ₽</p>
                 </div>
             </div>
         </div>

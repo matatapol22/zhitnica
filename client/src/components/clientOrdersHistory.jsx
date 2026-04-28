@@ -1,8 +1,38 @@
-import { useState, Fragment} from 'react';
+import { useState, useEffect, Fragment} from 'react';
 import OrderRow from '../components/orderRowClient.jsx';
 
 const ClientOrdersHistory = ({}) => {
     const [activeButton, setActiveButton] = useState('all');
+    const [orders, setOrders] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchOrders = async () => {
+            try {
+                const response = await fetch('http://localhost:5000/api/profile/my-orders', {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+                });
+                if (response.ok) {
+                    const data = await response.json();
+                    setOrders(data);
+                    console.log("Загруженные заказы:", data);
+                } else {
+                    console.error("Ошибка при загрузке заказов:", response.statusText);
+                }
+            } catch (err) {
+                console.error("Ошибка загрузки заказов:", err);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchOrders();
+    }, []);
+
+    if (loading) return <div>Загрузка заказов...</div>;
+    console.log("Отображаемые заказы:", orders);
 
     return (
         <div className='p-0 md:p-4'>
@@ -43,19 +73,9 @@ const ClientOrdersHistory = ({}) => {
 
                 <div className="max-h-[500px] overflow-y-auto custom-scrollbar">
                     <div className="divide-y divide-gray-50 px-4 md:px-6">
-                        <OrderRow order={{
-                            id: '12450',
-                            date: '12 Октября 2023, 14:20',
-                            status: 'Обработан',
-                            statusColor: 'bg-yellow-400',
-                            total: '4 500',
-                            address: 'г. Москва, ул. Арбат, д. 1, кв. 12',
-                            receiver: 'Иван Иванов, +7 (999) 000-00-00',
-                            items: [
-                                { name: 'Мед Алтайский липовый', weight: '500г', count: 1, price: '1 200', img: '/images_product/product1.png' },
-                                { name: 'Кедровые орехи очищенные', weight: '200г', count: 1, price: '900', img: '/images_product/product2.png' }
-                            ]
-                        }} />
+                        {orders.map((order) => (
+                            <OrderRow key={order.id} order={order} />
+                        ))}
                     </div>
                 </div>
             </div>
